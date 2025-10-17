@@ -11,7 +11,8 @@ pipeline {
         stage('Clean Workspace') {
             steps {
                 // Remove everything in workspace including old .git and venv
-                deleteDir()
+                //deleteDir()
+                echo "Skipping workspace cleanup to avoid locked files"
             }
         }
 
