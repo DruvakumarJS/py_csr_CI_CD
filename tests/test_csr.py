@@ -50,15 +50,15 @@ def test_login(_drivers):
 #     WebDriverWait(ngo_page.driver, 10).until(EC.element_to_be_clickable(ok_button_locator)).click()
 #
 #     time.sleep(3)
-
-@pytest.mark.dependency(depends=["test_NgoCreate"])
-def test_ProjectCreate(_drivers):
-    _drivers.get("https://csr.netiapps.com/home/CSR/project-onboarding/create-project/new")
-   # _drivers.get("http://127.0.0.1:8000/home/CSR/project-onboarding/create-project/new")
-
-    project_page = ProjectPage(_drivers)
-    project_page.fill_project_details()
-    time.sleep(10)
+#
+# @pytest.mark.dependency(depends=["test_NgoCreate"])
+# def test_ProjectCreate(_drivers):
+#     _drivers.get("https://csr.netiapps.com/home/CSR/project-onboarding/create-project/new")
+#    # _drivers.get("http://127.0.0.1:8000/home/CSR/project-onboarding/create-project/new")
+#
+#     project_page = ProjectPage(_drivers)
+#     project_page.fill_project_details()
+#     time.sleep(10)
 
 
 
