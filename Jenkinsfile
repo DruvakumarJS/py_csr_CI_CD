@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // Optional: Path to Python if not in system PATH
+        // Path to Python executable if not in system PATH
         PYTHON = "python"
     }
 
@@ -10,7 +10,7 @@ pipeline {
 
         stage('Clean Workspace') {
             steps {
-                // Ensure no old .git or venv remains
+                // Remove everything in workspace including old .git and venv
                 deleteDir()
             }
         }
@@ -19,36 +19,35 @@ pipeline {
             steps {
                 git(
                     url: 'https://github.com/DruvakumarJS/py_csr_CI_CD.git',
-                    branch: 'master', // use the exact branch from your repo
-                    credentialsId: '' // leave empty if public, otherwise use your Jenkins credentials ID
+                    branch: 'master', // Use exact branch from your repo
+                    credentialsId: ''  // Fill in if your repo is private
                 )
             }
         }
 
         stage('Setup Python Environment') {
             steps {
-                // Create virtual environment
+                // Create a virtual environment
                 bat "${env.PYTHON} -m venv venv"
 
-                // Upgrade pip inside venv
+                // Upgrade pip inside the venv
                 bat "venv\\Scripts\\python.exe -m pip install --upgrade pip"
 
-                // Install requirements if you have a requirements.txt
+                // Install dependencies from requirements.txt (including xlrd==1.2.0)
                 bat "venv\\Scripts\\python.exe -m pip install -r requirements.txt"
-
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Run tests using pytest or your preferred test runner
-                bat "venv\\Scripts\\python.exe -m pytest"
+                // Run pytest on the tests folder (ensure lowercase 'tests/')
+                bat "venv\\Scripts\\python.exe -m pytest -v tests"
             }
         }
 
         stage('Publish Reports') {
             steps {
-                // Example: archive test results
+                // Example: archive pytest XML reports if generated
                 junit '**/test-reports/*.xml'
             }
         }
@@ -56,7 +55,7 @@ pipeline {
 
     post {
         always {
-            echo "Build finished, cleaning up if needed"
+            echo "Build finished — workspace cleaned up if needed."
         }
         success {
             echo "Build succeeded!"
