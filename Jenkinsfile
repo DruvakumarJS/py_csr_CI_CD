@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/yourusername/yourrepo.git'
+            }
+        }
+
+        stage('Setup Python Environment') {
+            steps {
+                bat 'python -m venv venv'
+                bat 'venv\\Scripts\\activate && pip install --upgrade pip'
+                bat 'venv\\Scripts\\activate && pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat 'venv\\Scripts\\activate && pytest Tests/ --maxfail=1 --disable-warnings -v --html=report.html --junitxml=results.xml'
+            }
+        }
+
+        stage('Publish Reports') {
+            steps {
+                junit 'results.xml'
+                publishHTML(target: [
+                    reportName: 'HTML Report',
+                    reportDir: '.',
+                    reportFiles: 'report.html',
+                    keepAll: true
+                ])
+            }
+        }
+    }
+}
