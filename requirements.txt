@@ -4,4 +4,4 @@ pytest-html
 pytest-xdist
 allure-pytest
 openpyxl
-xlrd
+xlrd==1.2.0

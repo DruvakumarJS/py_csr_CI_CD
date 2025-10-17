@@ -35,6 +35,7 @@ pipeline {
 
                 // Install requirements if you have a requirements.txt
                 bat "venv\\Scripts\\python.exe -m pip install -r requirements.txt"
+
             }
         }
 
