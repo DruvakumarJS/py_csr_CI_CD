@@ -9,3 +9,4 @@ if not exist %WORKSPACE%\reports mkdir %WORKSPACE%\reports
 python -m pytest -v --junitxml=%WORKSPACE%\reports\results.xml --html=%WORKSPACE%\reports\report.html --self-contained-html tests
 
 deactivate
+
