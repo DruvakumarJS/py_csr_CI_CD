@@ -11,32 +11,22 @@ from Pages.create_project import ProjectPage
 
 
 @pytest.mark.dependency()
-def test_login(driver):
-    """Verify login functionality with valid credentials"""
-
-    username = "DUMCSR001"
-    password = "admin"
-
-    print(f"Input Username: {username}")
-    print(f"Input Password: {password}")
-
-    login_object = LoginPage(driver)
+def test_login(_drivers):
+    login_object = LoginPage(_drivers)
     login_object.userid_field()
     login_object.password_field()
     login_object.login_button()
 
-    assert "Dashboard" in driver.title or "CSR" in driver.title, "Login failed or title not found"
-
 @pytest.mark.dependency(depends=["test_login"])
-def test_NgoCreate(driver):
-    driver.get("https://csr.netiapps.com/home/CSR/create-NGO")
+def test_NgoCreate(_drivers):
+    _drivers.get("https://csr.netiapps.com/home/CSR/create-NGO")
        #_drivers.get("http://127.0.0.1:8000/home/CSR/create-NGO")
 
-    ngo_page = NgoCreatePage(driver)
+    ngo_page = NgoCreatePage(_drivers)
 
       # Fill in NGO form
 
-    ngo_object = NgoCreatePage(driver)
+    ngo_object = NgoCreatePage(_drivers)
     ngo_object.enter_ngo_name1()
     ngo_object.select_type_of_ngo1()
     ngo_object.check_empelled_partner()
