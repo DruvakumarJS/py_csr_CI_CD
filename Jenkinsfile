@@ -52,7 +52,16 @@ pipeline {
         stage('Publish Reports') {
             steps {
                 // Example: archive pytest XML reports if generated
-                junit '**/test-reports/*.xml'
+                //junit '**/test-reports/*.xml'
+                junit 'reports/results.xml'
+                publishHTML([
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'reports',
+                    reportFiles: 'report.html',
+                    reportName: 'Pytest HTML Report'
+                ])
             }
         }
     }
