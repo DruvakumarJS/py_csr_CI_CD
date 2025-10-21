@@ -1,15 +1,11 @@
 @echo off
-REM Set PYTHONPATH for imports
-set PYTHONPATH=%CD%
+set WORKSPACE=%CD%
+set PYTHONPATH=%WORKSPACE%
 
-REM Activate virtual environment
-call venv\Scripts\activate.bat
+call %WORKSPACE%\venv\Scripts\activate.bat
 
-REM Create reports folder
-if not exist reports mkdir reports
+if not exist %WORKSPACE%\reports mkdir %WORKSPACE%\reports
 
-REM Run pytest with JUnit XML and HTML report
-python -m pytest -v --junitxml=reports/results.xml --html=reports/report.html --self-contained-html tests
+python -m pytest -v --junitxml=%WORKSPACE%\reports\results.xml --html=%WORKSPACE%\reports\report.html --self-contained-html tests
 
-REM Deactivate venv
 deactivate

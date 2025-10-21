@@ -46,6 +46,8 @@ pipeline {
 
                 // Add workspace to PYTHONPATH for imports
                bat 'set PYTHONPATH=%CD% && venv\\Scripts\\python.exe -m pytest -v tests'
+
+               bat '.\\run_tests.bat'
             }
         }
 
