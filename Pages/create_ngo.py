@@ -45,7 +45,7 @@ class NgoCreatePage:
 
     def enter_registration_details(self):
             self.sel_wrap_obj.enter_text(locators['csr_certificate_no'], "CSR123456789")
-            self.sel_wrap_obj.enter_text(locators['g80_number'], "987653210987654322")
+            self.sel_wrap_obj.enter_text(locators['g80_number'], "1234567890123456")
             self.sel_wrap_obj.enter_text(locators['a12_number'], "987653210987654323")
             time.sleep(2)
 
