@@ -7,11 +7,7 @@ from selenium.webdriver.common.by import By
 from Library.selenium_wrapper import SeleniumWrapper
 
 locators = login_locators()
-# locators = {
-#     "userid_field": (By.XPATH, '//*[@id="email"]'),
-#     "password_field": (By.XPATH, '//*[@id="password"]'),
-#     "login_button": (By.XPATH, '//*[@id="loginBtn"]')
-# }
+
 
 class LoginPage:
     def __init__(self, driver):
