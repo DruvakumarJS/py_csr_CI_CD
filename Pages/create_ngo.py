@@ -17,21 +17,42 @@ class NgoCreatePage:
 
         # using Excel sheet
 
+    # def enter_ngo_name1(self):
+    #         self.sel_wrap_obj.enter_text(locators['ngo_name'], "Mytri")
+    #         time.sleep(2)
+    #
+    # def select_type_of_ngo1(self):
+    #         self.sel_wrap_obj.click_on_element(locators['ngo_type'])
+    #         time.sleep(2)
+    #
+    # def check_empelled_partner(self):
+    #         self.sel_wrap_obj.click_on_element(locators['empelled1'])
+    #         time.sleep(2)
+    #
+    # def enter_vendor_code(self):
+    #         self.sel_wrap_obj.enter_text(locators['vendor_code'], "UIy654")
+    #         time.sleep(2)
+
     def enter_ngo_name1(self):
-            self.sel_wrap_obj.enter_text(locators['ngo_name'], "Mytri")
-            time.sleep(2)
+        name = "My NGO Name"
+        self.sel_wrap_obj.enter_text(locators['ngo_name'], name)
+        time.sleep(1)
+        return name
 
     def select_type_of_ngo1(self):
-            self.sel_wrap_obj.click_on_element(locators['ngo_type'])
-            time.sleep(2)
+        self.sel_wrap_obj.click_on_element(locators['ngo_type'])
+        time.sleep(2)
 
     def check_empelled_partner(self):
-            self.sel_wrap_obj.click_on_element(locators['empelled1'])
-            time.sleep(2)
+        self.sel_wrap_obj.click_on_element(locators['empelled1'])
+        time.sleep(1)
+        return True  # just indicate it was checked
 
     def enter_vendor_code(self):
-            self.sel_wrap_obj.enter_text(locators['vendor_code'], "UIy654")
-            time.sleep(2)
+        code = "V1234"
+        self.sel_wrap_obj.enter_text(locators['vendor_code'], code)
+        time.sleep(1)
+        return code
 
     def select_multiselect(self):
             self.sel_wrap_obj.select_multiple_options(locators['thematic_area'], ["Disaster Relief","Sports","Environment"])
